@@ -1,6 +1,6 @@
 import { getGreeting } from '../support/app.po';
 
-describe('react-nx', () => {
+describe('react-shop', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {
@@ -8,6 +8,6 @@ describe('react-nx', () => {
     cy.login('my-email@something.com', 'myPassword');
 
     // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome react-nx');
+    getGreeting().contains('Welcome react-shop');
   });
 });
