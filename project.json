@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "executor": "@nrwl/webpack:webpack",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
@@ -17,15 +15,11 @@
         "baseHref": "/",
         "main": "src/main.tsx",
         "tsConfig": "tsconfig.app.json",
-        "assets": [
-          "src/favicon.ico",
-          "src/assets"
-        ],
-        "styles": [
-          "src/styles.scss"
-        ],
+        "assets": ["src/favicon.ico", "src/assets"],
+        "styles": ["src/styles.scss"],
         "scripts": [],
-        "webpackConfig": "webpack.config.js"
+        "webpackConfig": "webpack.config.js",
+        "postcssConfig": "postcss.config.js"
       },
       "configurations": {
         "development": {
@@ -69,20 +63,14 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "./src/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["./src/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectName}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectName}"],
       "options": {
         "jestConfig": "jest.config.app.ts",
         "passWithNoTests": true

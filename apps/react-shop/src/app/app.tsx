@@ -1,4 +1,4 @@
-import { Header } from '@react-nx/header';
+import { Header } from '@react-nx/shared/ui';
 import React from 'react';
 import { RouterProvider } from 'react-router-dom';
 import router from './configs/router';

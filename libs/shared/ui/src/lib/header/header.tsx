@@ -1,8 +1,8 @@
-import React from 'react';
 import styles from './header.module.scss';
+import React from "react"
 
 /* eslint-disable-next-line */
-export interface HeaderProps {}
+export interface HeaderProps { }
 
 export function Header(props: HeaderProps) {
   return (

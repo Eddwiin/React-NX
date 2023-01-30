@@ -21,7 +21,8 @@
         ],
         "styles": ["apps/react-shop/src/styles.scss"],
         "scripts": [],
-        "webpackConfig": "apps/react-shop/webpack.config.js"
+        "webpackConfig": "apps/react-shop/webpack.config.js",
+        "postcssConfig": "apps/react-shop/postcss.config.js"
       },
       "configurations": {
         "development": {

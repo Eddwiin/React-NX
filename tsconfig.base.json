@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@react-nx/header": ["libs/header/src/index.ts"],
+      "@react-nx/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@react-shop": ["apps/react-shop/src/app"]
     }
   },
