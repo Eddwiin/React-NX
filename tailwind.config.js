@@ -12,9 +12,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        "test": "var(--test, red)"
-      }
+      colors: {}
     },
   },
   plugins: [],

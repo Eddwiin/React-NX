@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from './sign-up.module.scss';
 
-/* eslint-disable-next-line */
-export interface SignUpProps {}
 
-export function SignUp(props: SignUpProps) {
+export function SignUp() {
   return (
     <div className={styles['container']}>
       <h1>Welcome to SignUp!</h1>
