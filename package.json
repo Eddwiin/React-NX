@@ -54,8 +54,13 @@
     "url-loader": "^4.1.1"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.10",
+    "i18next-browser-languagedetector": "^7.0.1",
+    "i18next-http-backend": "^2.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.0",
+    "react-i18next": "^12.1.4",
     "react-router-dom": "6.4.3",
     "tslib": "^2.3.0",
     "yup": "^0.32.11"

@@ -1,0 +1,13 @@
+{
+    "AppName": "React Shop",
+    "Menu": {
+        "Login": "Connexion"
+    },
+    "FirstName": "First name",
+    "LastName": "Last name",
+    "Email": "Email",
+    "Adress": "Adresse",
+    "Password": "Password",
+    "ConfirmPassword": "Confirm password",
+    "Submit": "Envoyer"
+}

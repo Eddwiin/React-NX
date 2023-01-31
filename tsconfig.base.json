@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@react-nx/shared/hooks": ["libs/shared/hooks/src/index.ts"],
       "@react-nx/shared/regex": ["libs/shared/regex/src/index.ts"],
       "@react-nx/shared/schemas": ["libs/shared/schemas/src/index.ts"],
       "@react-nx/shared/ui": ["libs/shared/ui/src/index.ts"],
