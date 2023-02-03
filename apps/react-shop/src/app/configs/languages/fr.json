@@ -9,5 +9,6 @@
     "Adress": "Adresse",
     "Password": "Password",
     "ConfirmPassword": "Confirm password",
-    "Submit": "Envoyer"
+    "SignUpBtn": "S'inscrire",
+    "SignInBtn": "Se connecter"
 }
