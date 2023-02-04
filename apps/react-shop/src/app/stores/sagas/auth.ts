@@ -1,14 +1,15 @@
-import { put } from "redux-saga/effects";
+import { put, call } from "redux-saga/effects";
 import { UserAPI, UserAPIKeys } from "../../shared/interfaces/UserAPI";
 import * as actions from './../actions';
 import { API } from './../../helpers/api-helper';
+import { Action, ActionCreator, AnyAction } from "@reduxjs/toolkit";
 
 type UserForSignUp = Omit<UserAPI, 'id'>;
 type UserForSignIn = Pick<UserAPI, UserAPIKeys.email | UserAPIKeys.password>;
 type UserForForgotPassword = Pick<UserAPI, UserAPIKeys.email>;
+type UserForResetPassword = Pick<UserAPI, UserAPIKeys.password>;
 
-export function* signUpSaga(action: any) {
-
+export function* signUpSaga(action: AnyAction) {
     yield put(actions.signUpStart());
     const user: UserForSignUp = {
         [UserAPIKeys.firstName]: action.payload.first_name,
@@ -27,7 +28,9 @@ export function* signUpSaga(action: any) {
     }
 }
 
-export function* signInSaga(action: any): Generator<any> {
+export function* signInSaga(action: AnyAction): Generator<any> {
+    console.log("typeof action", typeof action);
+
     yield put(actions.signInStart());
     const user: UserForSignIn = {
         [UserAPIKeys.email]: action.payload.email,
@@ -42,16 +45,31 @@ export function* signInSaga(action: any): Generator<any> {
     }
 }
 
-export function* forgotPasswordSaga(action: any): Generator<any> {
+export function* forgotPasswordSaga(action: AnyAction): Generator<any> {
     yield put(actions.forgotPasswordStart());
     const user: UserForForgotPassword = {
         [UserAPIKeys.email]: action.payload.email
     }
 
     try {
-        const isSent = yield API.post('password', JSON.stringify(user));
+        const forgotPasswordRequest = () => API.post('password', JSON.stringify(user)).then(response => response)
+        const isSent = yield call(forgotPasswordRequest);
         yield put(actions.forgotPasswordSuccess(isSent as boolean));
     } catch (e) {
         yield put(actions.forgotPasswordFail(e))
+    }
+}
+
+export function* resetPasswordSaga(action: AnyAction): Generator<any> {
+    yield put(actions.resetPasswordStart());
+    const user: UserForResetPassword = {
+        [UserAPIKeys.password]: action.payload.password
+    }
+
+    try {
+        const isUpdated = yield API.post('password', JSON.stringify(user));
+        yield put(actions.resetPasswordSuccess(isUpdated as boolean))
+    } catch (e) {
+        yield put(actions.resetPasswordFail(e));
     }
 }

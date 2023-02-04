@@ -57,3 +57,22 @@ export const forgotPassword = (payload: Pick<AuthState, UserAPIKeys.email>) => (
     type: actionTypes.FORGOT_PASSWORD,
     payload
 })
+
+export const resetPasswordStart = () => ({
+    type: actionTypes.FORGOT_PASSWORD_START
+})
+
+export const resetPasswordSuccess = (isUpdated: boolean) => ({
+    type: actionTypes.FORGOT_PASSWORD_SUCCESS,
+    payload: { isUpdated }
+});
+
+export const resetPasswordFail = (error: unknown) => ({
+    type: actionTypes.RESET_PASSWORD_FAIL,
+    payload: { error }
+});
+
+export const resetPassword = (payload: Pick<AuthState, UserAPIKeys.password>) => ({
+    type: actionTypes.RESET_PASSWORD,
+    payload
+})

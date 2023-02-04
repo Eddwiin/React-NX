@@ -10,5 +10,9 @@ export {
     forgotPassword,
     forgotPasswordFail,
     forgotPasswordSuccess,
-    forgotPasswordStart
+    forgotPasswordStart,
+    resetPassword,
+    resetPasswordFail,
+    resetPasswordStart,
+    resetPasswordSuccess
 } from './auth'

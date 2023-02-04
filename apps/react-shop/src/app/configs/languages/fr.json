@@ -3,13 +3,14 @@
     "Menu": {
         "Login": "Connexion"
     },
-    "FirstName": "First name",
-    "LastName": "Last name",
-    "Email": "Email",
+    "FirstName": "Prénom",
+    "LastName": "Nom",
+    "Email": "Mail",
     "Adress": "Adresse",
-    "Password": "Password",
-    "ConfirmPassword": "Confirm password",
+    "Password": "Mot de passe",
+    "ConfirmPassword": "Confirmer le mot de passe",
     "SignUpBtn": "S'inscrire",
     "SignInBtn": "Se connecter",
-    "ForgotPasswordBtn": "Envoyer le mail"
+    "ForgotPasswordBtn": "Envoyer le mail",
+    "ReinitPasswordBtn": "Réinitialiser le mot de passe"
 }

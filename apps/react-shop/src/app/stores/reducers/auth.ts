@@ -1,15 +1,15 @@
 import { Action } from "@reduxjs/toolkit";
-import { UserAPI } from "../../shared/interfaces/UserAPI";
+import { UserAPI, UserAPIKeys } from "../../shared/interfaces/UserAPI";
 
 export type AuthState = Omit<UserAPI, 'id'>
 
 const initialState: AuthState = {
-    first_name: '',
-    last_name: '',
-    email: '',
-    phone: '',
-    adress: '',
-    password: ''
+    [UserAPIKeys.firstName]: '',
+    [UserAPIKeys.lastName]: '',
+    [UserAPIKeys.email]: '',
+    [UserAPIKeys.phone]: '',
+    [UserAPIKeys.adress]: '',
+    [UserAPIKeys.password]: ''
 }
 
 const authReducer = (state = initialState, action: Action) => {
