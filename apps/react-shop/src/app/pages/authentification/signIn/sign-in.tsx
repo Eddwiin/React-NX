@@ -33,8 +33,8 @@ export function SignIn() {
 
   const onSubmit = handleSubmit((data) => {
     dispatch(signIn({
-      [UserAPIKeys.email]: data.email,
-      [UserAPIKeys.password]: data.password
+      [UserAPIKeys.email]: data[UserAPIKeys.email],
+      [UserAPIKeys.password]: data[UserAPIKeys.password]
     }))
   })
 

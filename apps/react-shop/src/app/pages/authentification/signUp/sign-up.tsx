@@ -45,12 +45,12 @@ export function SignUp() {
 
   const onSubmit = handleSubmit(data => {
     dispatch(signUp({
-      [UserAPIKeys.firstName]: data.first_name,
-      [UserAPIKeys.lastName]: data.last_name,
-      [UserAPIKeys.email]: data.email,
-      [UserAPIKeys.phone]: data.phone,
-      [UserAPIKeys.adress]: data.adress,
-      [UserAPIKeys.password]: data.password,
+      [UserAPIKeys.firstName]: data[UserAPIKeys.firstName],
+      [UserAPIKeys.lastName]: data[UserAPIKeys.lastName],
+      [UserAPIKeys.email]: data[UserAPIKeys.email],
+      [UserAPIKeys.phone]: data[UserAPIKeys.phone],
+      [UserAPIKeys.adress]: data[UserAPIKeys.adress],
+      [UserAPIKeys.password]: data[UserAPIKeys.password],
     }))
   })
 

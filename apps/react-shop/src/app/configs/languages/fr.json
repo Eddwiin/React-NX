@@ -10,5 +10,6 @@
     "Password": "Password",
     "ConfirmPassword": "Confirm password",
     "SignUpBtn": "S'inscrire",
-    "SignInBtn": "Se connecter"
+    "SignInBtn": "Se connecter",
+    "ForgotPasswordBtn": "Envoyer le mail"
 }

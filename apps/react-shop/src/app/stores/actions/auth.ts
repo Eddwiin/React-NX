@@ -38,3 +38,22 @@ export const signIn = (payload: Pick<AuthState, UserAPIKeys.email | UserAPIKeys.
     type: actionTypes.SIGN_IN,
     payload
 });
+
+export const forgotPasswordStart = () => ({
+    type: actionTypes.FORGOT_PASSWORD_START
+});
+
+export const forgotPasswordSuccess = (isSent: boolean) => ({
+    type: actionTypes.FORGOT_PASSWORD_SUCCESS,
+    payload: { isSent }
+});
+
+export const forgotPasswordFail = (error: unknown) => ({
+    type: actionTypes.FORGOT_PASSWORD_FAIL,
+    payload: { error }
+});
+
+export const forgotPassword = (payload: Pick<AuthState, UserAPIKeys.email>) => ({
+    type: actionTypes.FORGOT_PASSWORD,
+    payload
+})
