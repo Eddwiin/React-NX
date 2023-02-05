@@ -7,4 +7,12 @@ describe('SignUp', () => {
     const { baseElement } = render(<SignUp />);
     expect(baseElement).toBeTruthy();
   });
+
+  describe('first_name', () => {
+    it('should invalid when is inferior to 3 letter', () => {
+      let { baseElement } = render(<SignUp />);
+      console.log("BASE ELEMENT", baseElement)
+    })
+
+  })
 });

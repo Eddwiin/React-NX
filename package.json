@@ -6,7 +6,8 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "shop": "nx serve react-shop"
+    "shop": "nx serve react-shop",
+    "shop:test": "nx test react-shop"
   },
   "private": true,
   "devDependencies": {

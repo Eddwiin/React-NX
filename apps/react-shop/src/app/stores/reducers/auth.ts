@@ -3,7 +3,7 @@ import { UserAPI, UserAPIKeys } from "../../shared/interfaces/UserAPI";
 
 export type AuthState = Omit<UserAPI, 'id'>
 
-const initialState: AuthState = {
+export const authInitialState: AuthState = {
     [UserAPIKeys.firstName]: '',
     [UserAPIKeys.lastName]: '',
     [UserAPIKeys.email]: '',
@@ -12,7 +12,7 @@ const initialState: AuthState = {
     [UserAPIKeys.password]: ''
 }
 
-const authReducer = (state = initialState, action: Action) => {
+const authReducer = (state = authInitialState, action: Action) => {
     switch (action.type) {
         default:
             return state;
