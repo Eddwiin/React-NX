@@ -8,7 +8,6 @@ export interface AuthentificationProps { }
 export function Authentification(props: AuthentificationProps) {
   return (
     <div className={styles['container']}>
-      <h1>Welcome to Authentification!</h1>
       <Outlet />
     </div>
   );

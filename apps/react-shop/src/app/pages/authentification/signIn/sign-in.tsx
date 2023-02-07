@@ -39,21 +39,25 @@ export function SignIn() {
   })
 
   return (
-    <form onSubmit={onSubmit} className={styles['container']}>
-      <div>
-        <label htmlFor={emailKey}>{t('Email')}</label>
-        <input {...register(emailKey)} id={emailKey} name={emailKey} type="email" onChange={onChange} />
-        {errors?.email && <p>{errors.email.message}</p>}
-      </div>
+    <>
+      <h1 className={styles['title']}>{t('SignUpTitle')}</h1>
+      <form onSubmit={onSubmit} className={styles['container']}>
+        <div>
+          <label htmlFor={emailKey}>{t('Email')}</label>
+          <input {...register(emailKey)} id={emailKey} name={emailKey} type="email" onChange={onChange} />
+          {errors?.email && <p>{errors.email.message}</p>}
+        </div>
 
-      <div>
-        <label htmlFor={passwordKey}>{t('Password')}</label>
-        <input {...register(passwordKey)} id={passwordKey} name={passwordKey} type="password" onChange={onChange} />
-        {errors?.password && <p>{errors.password.message}</p>}
-      </div>
+        <div>
+          <label htmlFor={passwordKey}>{t('Password')}</label>
+          <input {...register(passwordKey)} id={passwordKey} name={passwordKey} type="password" onChange={onChange} />
+          {errors?.password && <p>{errors.password.message}</p>}
+        </div>
 
-      <button type="submit">{t('SignInBtn')}</button>
-    </form>
+        <button className="button" type="submit">{t('SignInBtn')}</button>
+      </form>
+    </>
+
   );
 }
 
