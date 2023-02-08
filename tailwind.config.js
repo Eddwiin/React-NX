@@ -1,5 +1,9 @@
-const { createGlobPatternsForDependencies } = require('@nrwl/react/tailwind');
-const { join } = require('path');
+const {
+  createGlobPatternsForDependencies
+} = require('@nrwl/react/tailwind');
+const {
+  join
+} = require('path');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -12,7 +16,11 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {}
+      colors: {
+        header: 'var(--bg-header, red)',
+        body: 'var(--bg-body, white)',
+        blue: "var(--color-blue, #003250)"
+      }
     },
   },
   plugins: [],

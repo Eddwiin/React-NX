@@ -3,7 +3,8 @@
     "Menu": {
         "Login": "Connexion"
     },
-    "SignUpTitle": "Login",
+    "SignIn": "Connexion",
+    "SignUp": "Inscription",
     "FirstName": "Prénom",
     "LastName": "Nom",
     "Email": "Mail",

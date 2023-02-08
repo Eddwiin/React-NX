@@ -9,55 +9,74 @@ import { UserAPI, UserAPIKeys } from '../../../shared/interfaces/UserAPI';
 import { signIn } from '../../../stores/actions';
 import styles from './sign-in.module.scss';
 
-type SignInForm = Pick<UserAPI, UserAPIKeys.email | UserAPIKeys.password>
+type SignInForm = Pick<UserAPI, UserAPIKeys.email | UserAPIKeys.password>;
 
 export function SignIn() {
   const { t } = useTranslation();
   const signInSchema = userSchema.pick(['email', 'password']);
   const emailKey = UserAPIKeys.email;
   const passwordKey = UserAPIKeys.password;
-  const { register, handleSubmit, formState: { errors } } = useForm<SignInForm>({
-    resolver: yupResolver(signInSchema)
-  })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignInForm>({
+    resolver: yupResolver(signInSchema),
+  });
 
   const [state, setState] = useState({
     [emailKey]: '',
-    [passwordKey]: ''
+    [passwordKey]: '',
   });
 
   const dispatch = useAppDispatch();
 
   const onChange = useChange((fieldUpdated: FormDataChangedHook) => {
-    setState({ ...state, ...fieldUpdated })
-  })
+    setState({ ...state, ...fieldUpdated });
+  });
 
   const onSubmit = handleSubmit((data) => {
-    dispatch(signIn({
-      [UserAPIKeys.email]: data[UserAPIKeys.email],
-      [UserAPIKeys.password]: data[UserAPIKeys.password]
-    }))
-  })
+    dispatch(
+      signIn({
+        [UserAPIKeys.email]: data[UserAPIKeys.email],
+        [UserAPIKeys.password]: data[UserAPIKeys.password],
+      })
+    );
+  });
 
   return (
     <>
-      <h1 className={styles['title']}>{t('SignUpTitle')}</h1>
+      <h1 className={styles['title']}>{t('SignInTitle')}</h1>
       <form onSubmit={onSubmit} className={styles['container']}>
         <div>
           <label htmlFor={emailKey}>{t('Email')}</label>
-          <input {...register(emailKey)} id={emailKey} name={emailKey} type="email" onChange={onChange} />
+          <input
+            {...register(emailKey)}
+            id={emailKey}
+            name={emailKey}
+            type="email"
+            onChange={onChange}
+          />
           {errors?.email && <p>{errors.email.message}</p>}
         </div>
 
         <div>
           <label htmlFor={passwordKey}>{t('Password')}</label>
-          <input {...register(passwordKey)} id={passwordKey} name={passwordKey} type="password" onChange={onChange} />
+          <input
+            {...register(passwordKey)}
+            id={passwordKey}
+            name={passwordKey}
+            type="password"
+            onChange={onChange}
+          />
           {errors?.password && <p>{errors.password.message}</p>}
         </div>
 
-        <button className="button" type="submit">{t('SignInBtn')}</button>
+        <button className="button" type="submit">
+          {t('SignInBtn')}
+        </button>
       </form>
     </>
-
   );
 }
 

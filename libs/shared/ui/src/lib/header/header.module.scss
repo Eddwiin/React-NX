@@ -1,7 +1,15 @@
-/*
- * Replace this with your own classes
- *
- * e.g.
- * .container {
- * }
-*/
+.header {
+  @apply bg-header p-3 flex justify-between items-center;
+
+  &__title {
+    @apply font-bold text-blue text-xl font-serif;
+  }
+
+  &__menus {
+    @apply text-sm cursor-pointer;
+
+    &__label {
+      @apply pr-3 font-bold underline;
+    }
+  }
+}
