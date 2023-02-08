@@ -10,6 +10,5 @@
   --bg-body: #ddebf2;
 }
 body {
-  @apply bg-body;
-  // background-image: linear-gradient(120deg, #C7E5FC 0%, #57B1F7 100%);
+  @apply bg-body text-blue;
 }

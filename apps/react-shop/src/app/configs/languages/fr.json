@@ -1,8 +1,5 @@
 {
     "AppName": "React Shop",
-    "Menu": {
-        "Login": "Connexion"
-    },
     "SignIn": "Connexion",
     "SignUp": "Inscription",
     "FirstName": "Prénom",

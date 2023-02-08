@@ -55,53 +55,59 @@ export function SignUp() {
   })
 
   return (
-    <form onSubmit={onSubmit} className={styles['container']}>
-      <div>
-        <label htmlFor={firstNameKey}>{t('FirstName')}</label>
-        <input {...register(firstNameKey)} id={firstNameKey} name={firstNameKey} type="text" onChange={onChange} />
-        {errors?.first_name && <p>{errors.first_name.message}</p>}
+    <div className={styles['container']}>
+      <div  className={styles['container__title']}>
+        <h1 className={styles['title']}>{t('SignUp')}</h1>
       </div>
+      
+      <form onSubmit={onSubmit} >
+        <div className={styles['form-group'] + " " + styles['container__group']}>
+          <label className={styles['form-group__label']} htmlFor={firstNameKey}>{t('FirstName') + '*'}</label>
+          <input {...register(firstNameKey)} id={firstNameKey} name={firstNameKey} type="text" onChange={onChange} />
+          {errors?.first_name && <p>{errors.first_name.message}</p>}
+        </div>
 
-      <div>
-        <label htmlFor={lastNameKey}>{t('LastName')}</label>
-        <input {...register(lastNameKey)} id={lastNameKey} name={lastNameKey} type="text" onChange={onChange} />
-        {errors?.last_name && <p>{errors.last_name.message}</p>}
-      </div>
+        <div className={styles['form-group'] + " " + styles['container__group']}>
+          <label className={styles['form-group__label']} htmlFor={lastNameKey}>{t('LastName') + '*'}</label>
+          <input {...register(lastNameKey)} id={lastNameKey} name={lastNameKey} type="text" onChange={onChange} />
+          {errors?.last_name && <p>{errors.last_name.message}</p>}
+        </div>
 
-      <div>
-        <label htmlFor={emailKey}>{t('Email')}</label>
-        <input {...register(emailKey)} id={emailKey} name={emailKey} type="email" onChange={onChange} />
-        {errors?.email && <p>{errors.email.message}</p>}
-      </div>
+        <div className={styles['form-group'] + " " + styles['container__group']}>
+          <label className={styles['form-group__label']} htmlFor={emailKey}>{t('Email') + '*'}</label>
+          <input {...register(emailKey)} id={emailKey} name={emailKey} type="email" onChange={onChange} />
+          {errors?.email && <p>{errors.email.message}</p>}
+        </div>
 
-      <div>
-        <label htmlFor={adressKey}>{t('Adress')}</label>
-        <input {...register(adressKey)} id={adressKey} name={adressKey} type="text" onChange={onChange} />
-        {errors?.adress && <p>{errors.adress.message}</p>}
-      </div>
+        <div className={styles['form-group'] + " " + styles['container__group']}>
+          <label className={styles['form-group__label']} htmlFor={adressKey}>{t('Adress') + '*'}</label>
+          <input {...register(adressKey)} id={adressKey} name={adressKey} type="text" onChange={onChange} />
+          {errors?.adress && <p>{errors.adress.message}</p>}
+        </div>
 
-      <div>
-        <label htmlFor={phoneKey}>{t('Phone')}</label>
-        <input {...register(phoneKey)} id={phoneKey} name={phoneKey} type="tel" onChange={onChange} />
-        {errors?.adress && <p>{errors.adress.message}</p>}
-      </div>
+        <div className={styles['form-group'] + " " + styles['container__group']}>
+          <label className={styles['form-group__label']} htmlFor={phoneKey}>{t('Phone') + '*'}</label>
+          <input {...register(phoneKey)} id={phoneKey} name={phoneKey} type="tel" onChange={onChange} />
+          {errors?.adress && <p>{errors.adress.message}</p>}
+        </div>
 
+        <div className={styles['form-group'] + " " + styles['container__group']}>
+          <label className={styles['form-group__label']} htmlFor={passwordKey}>{t('Password') + '*'}</label>
+          <input {...register(passwordKey)} id={passwordKey} name={passwordKey} type="password" onChange={onChange} />
+          {errors?.password && <p>{errors.password.message}</p>}
+        </div>
 
-      <div>
-        <label htmlFor={passwordKey}>{t('Password')}</label>
-        <input {...register(passwordKey)} id={passwordKey} name={passwordKey} type="password" onChange={onChange} />
-        {errors?.password && <p>{errors.password.message}</p>}
-      </div>
+        <div className={styles['form-group'] + " " + styles['container__group']}>
+          <label className={styles['form-group__label']} htmlFor={confirmPasswordKey}>{t('ConfirmPassword') + '*'}</label>
+          <input {...register(confirmPasswordKey)} id={confirmPasswordKey} name={confirmPasswordKey} type="password" onChange={onChange} />
+          {errors?.confirm_password && <p>{errors.confirm_password.message}</p>}
+        </div>
 
-      <div>
-        <label htmlFor={confirmPasswordKey}>{t('ConfirmPassword')}</label>
-        <input {...register(confirmPasswordKey)} id={confirmPasswordKey} name={confirmPasswordKey} type="password" onChange={onChange} />
-        {errors?.confirm_password && <p>{errors.confirm_password.message}</p>}
-      </div>
+        <button type="submit">{t('SignUpBtn')}</button>
 
-      <button type="submit">{t('SignUpBtn')}</button>
+      </form>
+    </div>
 
-    </form>
   );
 }
 

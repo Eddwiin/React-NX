@@ -1,7 +1,15 @@
-/*
- * Replace this with your own classes
- *
- * e.g.
- * .container {
- * }
-*/
+@forward './../../../../assets/scss/components';
+@forward './../../../../assets/scss/utilities';
+
+.container {
+    @apply flex flex-col gap-6;
+
+    &__title {
+        @apply flex justify-center pt-5 pb-3;
+    }
+
+    &__group {
+        @apply pb-5
+    }
+}
+
