@@ -17,9 +17,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        header: 'var(--bg-header, red)',
+        blue: {
+          light: 'var(--blue-light, #11E4E4)',
+          black: 'var(--blue-black, #003250)'
+        },
         body: 'var(--bg-body, white)',
-        blue: "var(--color-blue, #003250)"
       }
     },
   },

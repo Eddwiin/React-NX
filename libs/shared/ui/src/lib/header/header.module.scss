@@ -1,8 +1,8 @@
 .header {
-  @apply bg-header p-3 flex justify-between items-center;
+  @apply bg-blue-light p-3 flex justify-between items-center;
 
   &__title {
-    @apply font-bold text-blue text-xl font-serif;
+    @apply font-bold text-blue-black text-xl font-serif;
   }
 
   &__menus {

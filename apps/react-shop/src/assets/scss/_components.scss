@@ -1,7 +1,15 @@
 .form-group {
-    @apply flex flex-col gap-3;
+  @apply flex flex-col gap-3;
 
-    &__label {
-        @apply text-sm font-bold;
-    }
+  &__label {
+    @apply text-sm font-bold;
+  }
+
+  &__input {
+    @apply bg-slate-200 p-1 rounded-xl pl-3;
+  }
+
+  &__button {
+    @apply bg-blue-light py-3 px-7 rounded-full font-bold text-[#0B0C0C];
+  }
 }
