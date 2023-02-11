@@ -1,18 +1,20 @@
-import { render } from '@testing-library/react';
-
+import { fireEvent, screen } from '@testing-library/react';
 import SignUp from './sign-up';
+import { reactI18nextMock, renderWithProviders } from './../../../helpers/test-helper';
+
+reactI18nextMock();
 
 describe('SignUp', () => {
+
   it('should render successfully', () => {
-    const { baseElement } = render(<SignUp />);
+    const { baseElement } = renderWithProviders(<SignUp />);
     expect(baseElement).toBeTruthy();
   });
 
-  describe('first_name', () => {
-    it('should invalid when is inferior to 3 letter', () => {
-      let { baseElement } = render(<SignUp />);
-      console.log("BASE ELEMENT", baseElement)
-    })
+  it("should display required when value is invalid", async () => {
+    const { container } = renderWithProviders(<SignUp />);
+    fireEvent.submit(screen.getByRole('button'));
 
+    expect(container.getElementsByClassName('error')).toHaveLength(6);
   })
 });

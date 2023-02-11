@@ -7,6 +7,7 @@ import type { AppStore, RootState } from '../stores';
 import { reducers } from '../stores/reducers';
 import authReducer, { authInitialState } from '../stores/reducers/auth';
 
+declare const jest: any;
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
     preloadedState?: PreloadedState<RootState>;
     store?: AppStore
@@ -25,4 +26,15 @@ export function renderWithProviders(
     }
 
     return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
+}
+
+export function reactI18nextMock() {
+    jest.mock('react-i18next', () => ({
+        useTranslation: () => {
+            return {
+                t: (str: string): string => str,
+            };
+        },
+    }));
+      
 }

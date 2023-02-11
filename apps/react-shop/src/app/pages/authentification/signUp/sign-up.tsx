@@ -80,7 +80,7 @@ export function SignUp() {
             type="text"
             onChange={onChange}
           />
-          {errors?.first_name && <p>{errors.first_name.message}</p>}
+          {errors?.first_name && <p className="form-group_error">{errors.first_name.message}</p>}
         </div>
 
         <div
@@ -97,7 +97,7 @@ export function SignUp() {
             type="text"
             onChange={onChange}
           />
-          {errors?.last_name && <p>{errors.last_name.message}</p>}
+          {errors?.last_name && <p className="form-group_error">{errors.last_name.message}</p>}
         </div>
 
         <div
@@ -114,7 +114,7 @@ export function SignUp() {
             type="email"
             onChange={onChange}
           />
-          {errors?.email && <p>{errors.email.message}</p>}
+          {errors?.email && <p className="form-group_error">{errors.email.message}</p>}
         </div>
 
         <div
@@ -131,7 +131,7 @@ export function SignUp() {
             type="text"
             onChange={onChange}
           />
-          {errors?.adress && <p>{errors.adress.message}</p>}
+          {errors?.adress && <p className="form-group_error">{errors.adress.message}</p>}
         </div>
 
         <div
@@ -148,7 +148,7 @@ export function SignUp() {
             type="tel"
             onChange={onChange}
           />
-          {errors?.adress && <p>{errors.adress.message}</p>}
+          {errors?.adress && <p className="form-group_error">{errors.adress.message}</p>}
         </div>
 
         <div
@@ -165,7 +165,7 @@ export function SignUp() {
             type="password"
             onChange={onChange}
           />
-          {errors?.password && <p>{errors.password.message}</p>}
+          {errors?.password && <p className="form-group_error">{errors.password.message}</p>}
         </div>
 
         <div
@@ -185,7 +185,7 @@ export function SignUp() {
             type="password"
             onChange={onChange}
           />
-          {errors?.confirm_password && <p>{errors.confirm_password.message}</p>}
+          {errors?.confirm_password && <p className="form-group_error">{errors.confirm_password.message}</p>}
         </div>
 
         <div className="flex justify-center pt-6">

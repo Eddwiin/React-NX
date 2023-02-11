@@ -1,10 +1,18 @@
-import { render } from '@testing-library/react';
 
+import { renderWithProviders } from '../../../helpers/test-helper';
 import ResetPassword from './reset-password';
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => {
+      return {
+          t: (str: string): string => str,
+      };
+  },
+}));
+ 
 describe('ResetPassword', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<ResetPassword />);
+    const { baseElement } = renderWithProviders(<ResetPassword />);
     expect(baseElement).toBeTruthy();
   });
 });

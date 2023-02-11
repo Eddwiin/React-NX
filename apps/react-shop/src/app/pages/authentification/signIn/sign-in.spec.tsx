@@ -1,10 +1,18 @@
-import { render } from '@testing-library/react';
+import { renderWithProviders } from '../../../helpers/test-helper';
 
 import SignIn from './sign-in';
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => {
+      return {
+          t: (str: string): string => str,
+      };
+  },
+}));
+
 describe('SignIn', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<SignIn />);
+    const { baseElement } = renderWithProviders(<SignIn />);
     expect(baseElement).toBeTruthy();
   });
 });

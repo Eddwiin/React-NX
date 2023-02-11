@@ -4,6 +4,15 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './app';
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => {
+      return {
+          t: (str: string): string => str,
+      };
+  },
+}));
+
+
 describe('App', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
