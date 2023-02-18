@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormDataChangedHook, useChange } from '@react-nx/shared/hooks';
 import { userSchema } from '@react-nx/shared/schemas';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../helpers/redux-helper';
@@ -43,10 +43,12 @@ export function SignUp() {
   });
 
   const onChange = useChange((fieldUpdated: FormDataChangedHook) => {
+    console.log("on change")
     setState({ ...state, ...fieldUpdated });
   });
 
   const onSubmit = handleSubmit((data) => {
+    console.log("ON SUBMIT");
     dispatch(
       signUp({
         [UserAPIKeys.firstName]: data[UserAPIKeys.firstName],
@@ -65,7 +67,7 @@ export function SignUp() {
         <h1 className={styles['title']}>{t('SignUp')}</h1>
       </div>
 
-      <form onSubmit={onSubmit}>
+      <form data-testid="sign-up-form" onSubmit={onSubmit}>
         <div
           className={styles['form-group'] + ' ' + styles['container__group']}
         >
@@ -80,8 +82,8 @@ export function SignUp() {
             type="text"
             onChange={onChange}
           />
-          {errors?.first_name && (
-            <p className="form-group_error">{errors.first_name.message}</p>
+          {errors?.[UserAPIKeys.firstName] && (
+            <p data-testid="sign-up-error" className="form-group_error">{errors?.[UserAPIKeys.firstName].message}</p>
           )}
         </div>
 
@@ -99,8 +101,8 @@ export function SignUp() {
             type="text"
             onChange={onChange}
           />
-          {errors?.last_name && (
-            <p className="form-group_error">{errors.last_name.message}</p>
+          {errors?.[UserAPIKeys.lastName] && (
+            <p data-testid="sign-up-error" className="form-group_error">{errors?.[UserAPIKeys.lastName].message}</p>
           )}
         </div>
 
@@ -118,8 +120,8 @@ export function SignUp() {
             type="email"
             onChange={onChange}
           />
-          {errors?.email && (
-            <p className="form-group_error">{errors.email.message}</p>
+          {errors?.[UserAPIKeys.email] && (
+            <p data-testid="sign-up-error" className="form-group_error">{errors?.[UserAPIKeys.email].message}</p>
           )}
         </div>
 
@@ -137,8 +139,8 @@ export function SignUp() {
             type="text"
             onChange={onChange}
           />
-          {errors?.adress && (
-            <p className="form-group_error">{errors.adress.message}</p>
+          {errors?.[UserAPIKeys.adress] && (
+            <p data-testid="sign-up-error" className="form-group_error">{errors?.[UserAPIKeys.adress].message}</p>
           )}
         </div>
 
@@ -156,8 +158,8 @@ export function SignUp() {
             type="tel"
             onChange={onChange}
           />
-          {errors?.adress && (
-            <p className="form-group_error">{errors.adress.message}</p>
+          {errors?.[UserAPIKeys.phone] && (
+            <p data-testid="sign-up-error" className="form-group_error">{errors?.[UserAPIKeys.phone].message}</p>
           )}
         </div>
 
@@ -175,8 +177,8 @@ export function SignUp() {
             type="password"
             onChange={onChange}
           />
-          {errors?.password && (
-            <p className="form-group_error">{errors.password.message}</p>
+          {errors?.[UserAPIKeys.password] && (
+            <p data-testid="sign-up-error" className="form-group_error">{errors?.[UserAPIKeys.password].message}</p>
           )}
         </div>
 
@@ -198,7 +200,7 @@ export function SignUp() {
             onChange={onChange}
           />
           {errors?.confirm_password && (
-            <p className="form-group_error">
+            <p data-testid="sign-up-error" className="form-group_error">
               {errors.confirm_password.message}
             </p>
           )}
@@ -206,7 +208,6 @@ export function SignUp() {
 
         <div className="flex justify-center pt-6">
           <button
-            data-testid="submit"
             className={
               styles['form-group__button'] + ' w-9/12 md:w-7/12 lg:w-5/12'
             }

@@ -9,7 +9,7 @@ type UserForSignIn = Pick<UserAPI, UserAPIKeys.email | UserAPIKeys.password>;
 type UserForForgotPassword = Pick<UserAPI, UserAPIKeys.email>;
 type UserForResetPassword = Pick<UserAPI, UserAPIKeys.password>;
 
-export function* signUpSaga(action: AnyAction) {
+export function* signUpSaga(action: AnyAction): Generator<any> {
     yield put(actions.signUpStart());
     const user: UserForSignUp = {
         [UserAPIKeys.firstName]: action.payload.first_name,
@@ -21,7 +21,8 @@ export function* signUpSaga(action: AnyAction) {
     }
 
     try {
-        yield API.post('users', JSON.stringify(user));
+        const response = yield API.post('users/add', JSON.stringify(user)).then(res => res.json());
+        console.log({ response })
         yield put(actions.signUpSuccess())
     } catch (e) {
         yield put(actions.signUpFail(e))
@@ -29,8 +30,6 @@ export function* signUpSaga(action: AnyAction) {
 }
 
 export function* signInSaga(action: AnyAction): Generator<any> {
-    console.log("typeof action", typeof action);
-
     yield put(actions.signInStart());
     const user: UserForSignIn = {
         [UserAPIKeys.email]: action.payload.email,
