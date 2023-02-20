@@ -24,9 +24,8 @@ export const signInStart = () => ({
     type: actionTypes.SIGN_IN_START
 });
 
-export const signInSuccess = (session: any) => ({
+export const signInSuccess = () => ({
     type: actionTypes.SIGN_IN_SUCCESS,
-    payload: { session }
 });
 
 export const signInFail = (error: unknown) => ({
@@ -43,9 +42,8 @@ export const forgotPasswordStart = () => ({
     type: actionTypes.FORGOT_PASSWORD_START
 });
 
-export const forgotPasswordSuccess = (isSent: boolean) => ({
+export const forgotPasswordSuccess = () => ({
     type: actionTypes.FORGOT_PASSWORD_SUCCESS,
-    payload: { isSent }
 });
 
 export const forgotPasswordFail = (error: unknown) => ({

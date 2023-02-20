@@ -1,9 +1,15 @@
-import { put, call } from "redux-saga/effects";
+import { AnyAction } from "@reduxjs/toolkit";
+import { put } from "redux-saga/effects";
 import { UserAPI, UserAPIKeys } from "../../shared/interfaces/UserAPI";
-import * as actions from './../actions';
 import { API } from './../../helpers/api-helper';
-import { Action, ActionCreator, AnyAction } from "@reduxjs/toolkit";
+import * as actions from './../actions';
 
+import {
+    sendPasswordResetEmail, signInWithEmailAndPassword
+} from 'firebase/auth';
+import { auth } from "../../configs/firebase";
+
+  
 type UserForSignUp = Omit<UserAPI, 'id'>;
 type UserForSignIn = Pick<UserAPI, UserAPIKeys.email | UserAPIKeys.password>;
 type UserForForgotPassword = Pick<UserAPI, UserAPIKeys.email>;
@@ -31,14 +37,15 @@ export function* signUpSaga(action: AnyAction): Generator<any> {
 
 export function* signInSaga(action: AnyAction): Generator<any> {
     yield put(actions.signInStart());
-    const user: UserForSignIn = {
-        [UserAPIKeys.email]: action.payload.email,
-        [UserAPIKeys.password]: action.payload.password
-    }
+    // const user: UserForSignIn = {
+    //     [UserAPIKeys.email]: action.payload.email,
+    //     [UserAPIKeys.password]: action.payload.password
+    // }
 
     try {
-        const sessionToken = yield API.post('sessions', JSON.stringify(user));
-        yield put(actions.signInSuccess(sessionToken));
+        // const sessionToken = yield API.post('sessions', JSON.stringify(user));
+        signInWithEmailAndPassword(auth, action.payload.email,  action.payload.password)
+        yield put(actions.signInSuccess());
     } catch (e) {
         yield put(actions.signInFail(e))
     }
@@ -46,14 +53,16 @@ export function* signInSaga(action: AnyAction): Generator<any> {
 
 export function* forgotPasswordSaga(action: AnyAction): Generator<any> {
     yield put(actions.forgotPasswordStart());
-    const user: UserForForgotPassword = {
-        [UserAPIKeys.email]: action.payload.email
-    }
+    // const user: UserForForgotPassword = {
+    //     [UserAPIKeys.email]: action.payload.email
+    // }
 
     try {
-        const forgotPasswordRequest = () => API.post('password', JSON.stringify(user)).then(response => response)
-        const isSent = yield call(forgotPasswordRequest);
-        yield put(actions.forgotPasswordSuccess(isSent as boolean));
+        yield sendPasswordResetEmail(auth, action.payload.email);
+        yield put(actions.forgotPasswordSuccess());
+        // const forgotPasswordRequest = () => API.post('password', JSON.stringify(user)).then(response => response)
+        // const isSent = yield call(forgotPasswordRequest);
+        // yield put(actions.forgotPasswordSuccess(isSent as boolean));
     } catch (e) {
         yield put(actions.forgotPasswordFail(e))
     }
@@ -61,13 +70,13 @@ export function* forgotPasswordSaga(action: AnyAction): Generator<any> {
 
 export function* resetPasswordSaga(action: AnyAction): Generator<any> {
     yield put(actions.resetPasswordStart());
-    const user: UserForResetPassword = {
-        [UserAPIKeys.password]: action.payload.password
-    }
+    // const user: UserForResetPassword = {
+    //     [UserAPIKeys.password]: action.payload.password
+    // }
 
     try {
-        const isUpdated = yield API.post('password', JSON.stringify(user));
-        yield put(actions.resetPasswordSuccess(isUpdated as boolean))
+        // const isUpdated = yield API.post('password', JSON.stringify(user));
+        // yield put(actions.resetPasswordSuccess(isUpdated as boolean))
     } catch (e) {
         yield put(actions.resetPasswordFail(e));
     }
