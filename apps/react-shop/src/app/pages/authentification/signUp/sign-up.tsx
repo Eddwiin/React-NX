@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormDataChangedHook, useChange } from '@react-nx/shared/hooks';
 import { userSchema } from '@react-nx/shared/schemas';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../helpers/redux-helper';
@@ -21,6 +21,7 @@ export function SignUp() {
   } = useForm<SignUpForm>({
     resolver: yupResolver(signUpSchema),
   });
+
 
   const firstNameKey = UserAPIKeys.firstName;
   const lastNameKey = UserAPIKeys.lastName;
@@ -43,7 +44,6 @@ export function SignUp() {
   });
 
   const onChange = useChange((fieldUpdated: FormDataChangedHook) => {
-    console.log("on change")
     setState({ ...state, ...fieldUpdated });
   });
 
@@ -174,6 +174,7 @@ export function SignUp() {
             id={passwordKey}
             className={styles['form-group__input']}
             name={passwordKey}
+            autoComplete="on"
             type="password"
             onChange={onChange}
           />
@@ -196,6 +197,7 @@ export function SignUp() {
             id={confirmPasswordKey}
             className={styles['form-group__input']}
             name={confirmPasswordKey}
+            autoComplete="on"
             type="password"
             onChange={onChange}
           />

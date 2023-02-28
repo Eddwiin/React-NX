@@ -1,5 +1,5 @@
+import { EMAIL_REGEX, PASSWORD_REGEX, PHONE_REGEX } from '@react-nx/shared/regex';
 import * as yup from 'yup';
-import { EMAIL_REGEX, PHONE_REGEX, PASSWORD_REGEX } from '@react-nx/shared/regex';
 
 export const userSchema = yup.object().shape({
   first_name: yup.string().required().min(3).max(20),
