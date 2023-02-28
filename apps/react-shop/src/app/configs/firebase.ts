@@ -1,5 +1,6 @@
 import { initializeApp } from '@firebase/app';
 import { getDatabase } from '@firebase/database';
+import { getAuth } from 'firebase/auth';
 
 const FIREBASE_CONFIG = {
     apiKey: process.env.NX_FIREBASE_API_KEY,
@@ -13,5 +14,10 @@ const FIREBASE_CONFIG = {
 }
 
 const app = initializeApp(FIREBASE_CONFIG)
-console.log("FIREBASE_CONFIG", FIREBASE_CONFIG);
+
 export const db = getDatabase(app);
+export const getAuthWithApp = getAuth(app);
+
+export const FIREBASE_ENDPOINT = {
+    USERS: "/users"
+}

@@ -1,9 +1,14 @@
 import { AnyAction } from "@reduxjs/toolkit";
-import { ref, set } from "firebase/database";
+import * as CryptoJS from 'crypto-js';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { ref, set } from 'firebase/database';
 import { put } from "redux-saga/effects";
-import { db } from '../../configs/firebase';
+import { db, FIREBASE_ENDPOINT, getAuthWithApp } from "../../configs/firebase";
 import { UserAPI, UserAPIKeys } from "../../shared/interfaces/UserAPI";
 import * as actions from './../actions';
+
+
+const secretKeyForCryptoJs = process.env.NX_SECRET_KEY_CRYPTOJS || '';
 
 type UserForSignUp = Omit<UserAPI, 'id'>;
 // type UserForSignIn = Pick<UserAPI, UserAPIKeys.email | UserAPIKeys.password>;
@@ -19,14 +24,15 @@ export function* signUpSaga(action: AnyAction): Generator<any> {
         [UserAPIKeys.email]: action.payload.email,
         [UserAPIKeys.phone]: action.payload.phone,
         [UserAPIKeys.adress]: action.payload.adress,
-        [UserAPIKeys.password]: action.payload.password
+        [UserAPIKeys.password]: CryptoJS.AES.encrypt(action.payload.password, secretKeyForCryptoJs).toString()
     }
 
     try {
-        // const response = yield API.post('users/add', JSON.stringify(user)).then(res => res.json());
-        // console.log({ response })
-        console.log("in addoc set");
-        set(ref(db, '/'), user).then(console.log).catch(console.error)
+        yield createUserWithEmailAndPassword(getAuthWithApp, user.email, user.password).then((userCredential) => {
+            console.log("userCredential", userCredential);
+            const uuid4 = userCredential.user.uid;
+            set(ref(db, `${FIREBASE_ENDPOINT.USERS}/${uuid4}`), user)
+        })
         yield put(actions.signUpSuccess())
     } catch (e) {
         yield put(actions.signUpFail(e))
