@@ -1,8 +1,8 @@
 import { AnyAction } from "@reduxjs/toolkit";
 import * as CryptoJS from 'crypto-js';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { ref, set } from 'firebase/database';
-import { put } from "redux-saga/effects";
+import { put, PutEffect } from "redux-saga/effects";
 import { db, FIREBASE_ENDPOINT, getAuthWithApp } from "../../configs/firebase";
 import { UserAPI, UserAPIKeys } from "../../shared/interfaces/UserAPI";
 import * as actions from './../actions';
@@ -11,12 +11,13 @@ import * as actions from './../actions';
 const secretKeyForCryptoJs = process.env.NX_SECRET_KEY_CRYPTOJS || '';
 
 type UserForSignUp = Omit<UserAPI, 'id'>;
-// type UserForSignIn = Pick<UserAPI, UserAPIKeys.email | UserAPIKeys.password>;
+type UserForSignIn = Pick<UserAPI, UserAPIKeys.email | UserAPIKeys.password>;
 // type UserForForgotPassword = Pick<UserAPI, UserAPIKeys.email>;
 // type UserForResetPassword = Pick<UserAPI, UserAPIKeys.password>;
 
+type GeneratorType = Generator<PutEffect<AnyAction> | Promise<void>>;
 
-export function* signUpSaga(action: AnyAction): Generator<any> {
+export function* signUpSaga(action: AnyAction): GeneratorType{
     yield put(actions.signUpStart());
     const user: UserForSignUp = {
         [UserAPIKeys.firstName]: action.payload.first_name,
@@ -29,7 +30,6 @@ export function* signUpSaga(action: AnyAction): Generator<any> {
 
     try {
         yield createUserWithEmailAndPassword(getAuthWithApp, user.email, user.password).then((userCredential) => {
-            console.log("userCredential", userCredential);
             const uuid4 = userCredential.user.uid;
             set(ref(db, `${FIREBASE_ENDPOINT.USERS}/${uuid4}`), user)
         })
@@ -39,23 +39,25 @@ export function* signUpSaga(action: AnyAction): Generator<any> {
     }
 }
 
-export function* signInSaga(action: AnyAction): Generator<any> {
+export function* signInSaga(action: AnyAction): GeneratorType {
     yield put(actions.signInStart());
-    // const user: UserForSignIn = {
-    //     [UserAPIKeys.email]: action.payload.email,
-    //     [UserAPIKeys.password]: action.payload.password
-    // }
+    const user: UserForSignIn = {
+        [UserAPIKeys.email]: action.payload.email,
+        [UserAPIKeys.password]: CryptoJS.AES.encrypt(action.payload.password, secretKeyForCryptoJs).toString()
+    }
 
     try {
-        // const sessionToken = yield API.post('sessions', JSON.stringify(user));
-        // signInWithEmailAndPassword(auth, action.payload.email,  action.payload.password)
+        yield signInWithEmailAndPassword(getAuthWithApp, user.email, user.password).then(userCredential => {
+            console.log("userCredential", userCredential)
+        })
         yield put(actions.signInSuccess());
     } catch (e) {
+        console.log("ERROR LOGGIN", e)
         yield put(actions.signInFail(e))
     }
 }
 
-export function* forgotPasswordSaga(action: AnyAction): Generator<any> {
+export function* forgotPasswordSaga(action: AnyAction): GeneratorType {
     yield put(actions.forgotPasswordStart());
     // const user: UserForForgotPassword = {
     //     [UserAPIKeys.email]: action.payload.email
@@ -72,7 +74,7 @@ export function* forgotPasswordSaga(action: AnyAction): Generator<any> {
     }
 }
 
-export function* resetPasswordSaga(action: AnyAction): Generator<any> {
+export function* resetPasswordSaga(action: AnyAction): GeneratorType {
     yield put(actions.resetPasswordStart());
     // const user: UserForResetPassword = {
     //     [UserAPIKeys.password]: action.payload.password
