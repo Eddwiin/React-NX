@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "fire
 import { ref, set } from 'firebase/database';
 import { put, PutEffect } from "redux-saga/effects";
 import { db, FIREBASE_ENDPOINT, getAuthWithApp } from "../../configs/firebase";
+import { LocalStorageKey } from '../../shared/enum/localstorage-key.enum';
 import { UserAPI, UserAPIKeys } from "../../shared/interfaces/UserAPI";
 import * as actions from './../actions';
 
@@ -48,6 +49,8 @@ export function* signInSaga(action: AnyAction): GeneratorType {
 
     try {
         yield signInWithEmailAndPassword(getAuthWithApp, user.email, user.password).then(userCredential => {
+            const token = yield userCredential.user.getIdToken();
+            yield call([localStorage, 'setItem'], LocalStorageKey.AccessToken, token)
             console.log("userCredential", userCredential)
         })
         yield put(actions.signInSuccess());
