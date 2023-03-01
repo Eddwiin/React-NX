@@ -52,12 +52,8 @@ export function* signInSaga(action: AnyAction): GeneratorType {
         const uuid4 = userCredential.user.uid;
         const dbRef= ref(db);
 
-        const user = (yield get(child(dbRef, `${FIREBASE_ENDPOINT.USERS}/${uuid4}`)).then((snapshot) => {
-            if(snapshot.exists()) {
-                return snapshot.val()
-            }
-            return null;
-        })) as UserAPI;
+        const user = (yield get(child(dbRef, `${FIREBASE_ENDPOINT.USERS}/${uuid4}`))
+            .then((snapshot) => snapshot.exists() ? snapshot.val() : null)) as UserAPI;
 
         if (user) {
             yield call([localStorage, localStorage.setItem], LocalStorageKey.AccessToken, accessToken);
@@ -69,7 +65,6 @@ export function* signInSaga(action: AnyAction): GeneratorType {
         yield put(actions.signInSuccess());
         
     } catch (e) {
-        console.log("ERROR LOGGIN", e)
         yield put(actions.signInFail(e))
     }
 }
