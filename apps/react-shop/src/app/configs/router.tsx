@@ -3,7 +3,6 @@ import { createBrowserRouter, redirect } from 'react-router-dom';
 import App from '../app';
 import Authentification from '../pages/authentification/authentification';
 import ForgotPassword from '../pages/authentification/forgotPassword/forgot-password';
-import ResetPassword from '../pages/authentification/resetPassword/reset-password';
 import SignIn from '../pages/authentification/signIn/sign-in';
 import SignUp from '../pages/authentification/signUp/sign-up';
 import { Paths } from './routes/paths';
@@ -28,10 +27,6 @@ const router = createBrowserRouter([
           {
             path: Paths.FORGOTPASSWORD,
             element: <ForgotPassword />,
-          },
-          {
-            path: Paths.RESETPASSWORD,
-            element: <ResetPassword />,
           },
           {
             path: '',
