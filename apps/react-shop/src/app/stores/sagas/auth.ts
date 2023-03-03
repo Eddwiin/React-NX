@@ -20,8 +20,8 @@ type GeneratorType = Generator<PutEffect<AnyAction> | Promise<any> | CallEffect<
 export function* signUpSaga(action: AnyAction): GeneratorType{
     yield put(actions.signUpStart());
     const userSignUp: UserForSignUp = {
-        [UserAPIKeys.firstName]: action.payload.first_name,
-        [UserAPIKeys.lastName]: action.payload.last_name,
+        [UserAPIKeys.firstName]: action.payload.firstName,
+        [UserAPIKeys.lastName]: action.payload.lastName,
         [UserAPIKeys.email]: action.payload.email,
         [UserAPIKeys.phone]: action.payload.phone,
         [UserAPIKeys.adress]: action.payload.adress,
@@ -61,7 +61,6 @@ export function* signInSaga(action: AnyAction): GeneratorType {
         } else {
             put(actions.signInFail('User not found'))
         }
-
         yield put(actions.signInSuccess());
         
     } catch (e) {

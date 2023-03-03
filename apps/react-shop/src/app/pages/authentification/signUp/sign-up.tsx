@@ -9,7 +9,7 @@ import { UserAPI, UserAPIKeys } from '../../../shared/interfaces/UserAPI';
 import { signUp } from '../../../stores/actions';
 import styles from './sign-up.module.scss';
 
-type SignUpForm = Omit<UserAPI, 'id'> & { confirm_password: string };
+type SignUpForm = Omit<UserAPI, 'id'> & { confirmPassword: string };
 
 export function SignUp() {
   const signUpSchema = userSchema;
@@ -22,14 +22,13 @@ export function SignUp() {
     resolver: yupResolver(signUpSchema),
   });
 
-
   const firstNameKey = UserAPIKeys.firstName;
   const lastNameKey = UserAPIKeys.lastName;
   const emailKey = UserAPIKeys.email;
   const adressKey = UserAPIKeys.adress;
   const phoneKey = UserAPIKeys.phone;
   const passwordKey = UserAPIKeys.password;
-  const confirmPasswordKey = 'confirm_password';
+  const confirmPasswordKey = 'confirmPassword';
 
   const dispatch = useAppDispatch();
 
@@ -48,7 +47,7 @@ export function SignUp() {
   });
 
   const onSubmit = handleSubmit((data) => {
-    console.log("ON SUBMIT");
+    console.log('ON SUBMIT');
     dispatch(
       signUp({
         [UserAPIKeys.firstName]: data[UserAPIKeys.firstName],
@@ -82,8 +81,10 @@ export function SignUp() {
             type="text"
             onChange={onChange}
           />
-          {errors?.[UserAPIKeys.firstName] && (
-            <p data-testid="sign-up-error" className="form-group_error">{errors?.[UserAPIKeys.firstName].message}</p>
+          {errors && (
+            <p data-testid="sign-up-error" className="form-group_error">
+              {errors.firstName?.message}
+            </p>
           )}
         </div>
 
@@ -101,8 +102,10 @@ export function SignUp() {
             type="text"
             onChange={onChange}
           />
-          {errors?.[UserAPIKeys.lastName] && (
-            <p data-testid="sign-up-error" className="form-group_error">{errors?.[UserAPIKeys.lastName].message}</p>
+          {errors && (
+            <p data-testid="sign-up-error" className="form-group_error">
+              {errors.lastName?.message}
+            </p>
           )}
         </div>
 
@@ -120,8 +123,10 @@ export function SignUp() {
             type="email"
             onChange={onChange}
           />
-          {errors?.[UserAPIKeys.email] && (
-            <p data-testid="sign-up-error" className="form-group_error">{errors?.[UserAPIKeys.email].message}</p>
+          {errors && (
+            <p data-testid="sign-up-error" className="form-group_error">
+              {errors.email?.message}
+            </p>
           )}
         </div>
 
@@ -139,8 +144,10 @@ export function SignUp() {
             type="text"
             onChange={onChange}
           />
-          {errors?.[UserAPIKeys.adress] && (
-            <p data-testid="sign-up-error" className="form-group_error">{errors?.[UserAPIKeys.adress].message}</p>
+          {errors && (
+            <p data-testid="sign-up-error" className="form-group_error">
+              {errors.adress?.message}
+            </p>
           )}
         </div>
 
@@ -158,8 +165,10 @@ export function SignUp() {
             type="tel"
             onChange={onChange}
           />
-          {errors?.[UserAPIKeys.phone] && (
-            <p data-testid="sign-up-error" className="form-group_error">{errors?.[UserAPIKeys.phone].message}</p>
+          {errors && (
+            <p data-testid="sign-up-error" className="form-group_error">
+              {errors.phone?.message}
+            </p>
           )}
         </div>
 
@@ -178,8 +187,10 @@ export function SignUp() {
             type="password"
             onChange={onChange}
           />
-          {errors?.[UserAPIKeys.password] && (
-            <p data-testid="sign-up-error" className="form-group_error">{errors?.[UserAPIKeys.password].message}</p>
+          {errors && (
+            <p data-testid="sign-up-error" className="form-group_error">
+              {errors.password?.message}
+            </p>
           )}
         </div>
 
@@ -201,9 +212,9 @@ export function SignUp() {
             type="password"
             onChange={onChange}
           />
-          {errors?.confirm_password && (
+          {errors && (
             <p data-testid="sign-up-error" className="form-group_error">
-              {errors.confirm_password.message}
+              {errors.confirmPassword?.message}
             </p>
           )}
         </div>

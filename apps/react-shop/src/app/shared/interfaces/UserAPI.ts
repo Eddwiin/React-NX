@@ -1,7 +1,7 @@
 export enum UserAPIKeys {
     id = "id",
-    firstName = "first_name",
-    lastName = "last_name",
+    firstName = "firstName",
+    lastName = "lastName",
     email = "email",
     phone = "phone",
     adress = "adress",
