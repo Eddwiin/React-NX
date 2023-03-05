@@ -16,7 +16,7 @@ export const authInitialState: AuthState = {
 const authReducer = (state = authInitialState, action: Action) => {
     switch (action.type) {
         case ActionsTypes.SIGN_IN_SUCCESS:
-            console.log("sign in sucess", action)
+            
             return state;
 
         case ActionsTypes.SIGN_IN_FAIL:

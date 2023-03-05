@@ -4,4 +4,5 @@ export enum Paths {
   SIGNIN = 'sign-in',
   SIGNUP = 'sign-up',
   FORGOTPASSWORD = 'forgot-password',
+  HOME = 'home'
 }

@@ -5,6 +5,7 @@ import Authentification from '../pages/authentification/authentification';
 import ForgotPassword from '../pages/authentification/forgotPassword/forgot-password';
 import SignIn from '../pages/authentification/signIn/sign-in';
 import SignUp from '../pages/authentification/signUp/sign-up';
+import { Home } from '../pages/home/home';
 import { Paths } from './routes/paths';
 
 const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         ],
       },
     ]
+  },
+  {
+    path: Paths.HOME,
+    element: <Home />
   },
   {
     path: Paths.DEFAULT,

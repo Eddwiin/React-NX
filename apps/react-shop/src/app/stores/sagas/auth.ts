@@ -7,7 +7,6 @@ import { LocalStorageKey } from "../../shared/enum/localstorage-key.enum";
 import { UserAPI, UserAPIKeys } from "../../shared/interfaces/UserAPI";
 import * as actions from './../actions';
 
-
 // const secretKeyForCryptoJs = process.env.NX_SECRET_KEY_CRYPTOJS || '';
 
 type UserForSignUp = Omit<UserAPI, 'id'>;
